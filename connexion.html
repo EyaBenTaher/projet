@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="inscription.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+       <!-- HTML de la Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-heartbeat"></i>LeMedecin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="projet1.html" data-page="home">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aboutUs.html" data-page="search" id="searchLink">Qui nous sommes ?</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="inscription.html" data-page="signup" id="signupLink">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connexion.html" data-page="login" id="loginLink">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink" style="display: none;">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+     <div id="connexion" class="page">
+        <div class="form-container">
+            <h1>🔐 Connexion</h1>
+            <form id="connexionForm" onsubmit="handleConnexion(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email *</label>
+                    <input type="email" id="loginEmail" name="loginEmail" required>
+                    <span class="error-message" id="loginEmailError">Veuillez entrer un email valide</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Mot de passe *</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                    <span class="error-message" id="loginPasswordError">Le mot de passe est requis</span>
+                </div>
+
+                <button type="submit" class="btn-primary">Se connecter</button>
+            </form>
+            <div class="form-footer">
+                Pas encore de compte ? <a href="inscription.html" onclick="showPage('inscription')">S'inscrire</a>
+            </div>
+        </div>
+    </div>
+   
+        <script src="auth.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>  
+  
+
+    
+</body>
+</html>

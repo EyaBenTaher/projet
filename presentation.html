@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation - LeMedecin.tn</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8d5f0 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #9c27b0;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .header h1 i {
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: #666;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(156, 39, 176, 0.15);
+            animation: fadeInUp 0.8s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(156, 39, 176, 0.25);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #9c27b0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 3px solid #dda0dd;
+            padding-bottom: 0.8rem;
+        }
+
+        .section-title i {
+            font-size: 1.8rem;
+            color: #dda0dd;
+        }
+
+        .content {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #9c27b0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.2);
+        }
+
+        .feature-card h4 {
+            color: #9c27b0;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card h4 i {
+            color: #dda0dd;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #9c27b0 0%, #dda0dd 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+
+        .tech-badge i {
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #dda0dd 0%, transparent 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #6a1b9a;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #666;
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer .contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .contact span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9c27b0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-heartbeat"></i>LeMedecin.tn</h1>
+            <p>Annuaire de santé et des médecins en Tunisie</p>
+        </div>
+
+        <!-- Section 1: Choix du thème -->
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb"></i>
+                Choix du Thème
+            </h2>
+            <div class="content">
+                <p>
+                    <span class="highlight">LeMedecin.tn</span> est un annuaire médical conçu pour faciliter l'accès aux soins de santé en Tunisie. 
+                    Le projet répond à un besoin réel : <strong>simplifier la recherche de professionnels de santé</strong> et permettre 
+                    aux patients de trouver rapidement un médecin adapté à leurs besoins.
+                </p>
+                <p>
+                    Dans un contexte où la prise de rendez-vous médical peut être compliquée et chronophage, notre plateforme 
+                    offre une solution moderne et intuitive pour connecter patients et praticiens. L'objectif est de 
+                    <strong>digitaliser l'accès aux soins</strong> et d'améliorer l'expérience patient.
+                </p>
+               
+            </div>
+        </div>
+
+        <!-- Section 2: Fonctionnalités -->
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                Fonctionnalités Développées
+            </h2>
+            <div class="content">
+                <p>
+                    Le site <span class="highlight">LeMedecin.tn</span> propose un ensemble de fonctionnalités complètes 
+                    pour faciliter la recherche et la prise de rendez-vous médicaux :
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-search"></i>Recherche Avancée</h4>
+                        <p>Recherche de médecins par nom et filtrage par spécialité (Cardiologue, Dermatologue, Pédiatre, Dentiste, Généraliste)</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-user-plus"></i>Inscription & Connexion</h4>
+                        <p>Système complet d'authentification avec validation des données en temps réel et gestion sécurisée des comptes utilisateurs</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-calendar-check"></i>Prise de Rendez-vous</h4>
+                        <p>Réservation de consultations en ligne avec sélection de la date, heure et motif de consultation</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-star"></i>Système d'Avis</h4>
+                        <p>Consultation et publication d'avis patients avec notation par étoiles pour guider les futurs patients</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-id-card"></i>Profils Médecins</h4>
+                        <p>Fiches détaillées des praticiens incluant spécialité, localisation, coordonnées et évaluations</p>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Technologies -->
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-code"></i>
+                Outils et Technologies Utilisés
+            </h2>
+            <div class="content">
+                <p>
+                    Le développement de <span class="highlight">LeMedecin.tn</span> s'appuie sur des technologies web modernes 
+                    et éprouvées pour garantir performance, accessibilité et maintenabilité :
+                </p>
+                <div class="tech-list">
+                    <div class="tech-badge">
+                        <i class="fab fa-html5"></i>
+                        HTML5
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fab fa-css3-alt"></i>
+                        CSS3
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fab fa-js"></i>
+                        JavaScript
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fab fa-bootstrap"></i>
+                        Bootstrap 5.3
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fas fa-icons"></i>
+                        Font Awesome 6.4
+                    </div>
+                    <div class="tech-badge">
+                        <i class="fas fa-database"></i>
+                        LocalStorage
+                    </div>
+                </div>
+                <p style="margin-top: 2rem;">
+                    <strong>Architecture technique :</strong> Le site utilise une approche <span class="highlight">front-end pure</span> 
+                    avec une gestion des données côté client via LocalStorage pour persister les informations utilisateurs, 
+                    les rendez-vous et les avis. L'interface responsive s'adapte à tous les écrans grâce à Bootstrap.
+                </p>
+                <p>
+                    <strong>Design moderne :</strong> Une charte graphique soignée avec une palette de couleurs violettes (plum, pink) 
+                    pour une identité visuelle marquée et professionnelle. Animations CSS fluides et transitions pour une expérience 
+                    utilisateur agréable.
+                </p>
+            </div>
+        </div>
+
+       
+    </div>
+</body>
+</html>

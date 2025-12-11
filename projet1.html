@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeMedecin.tn</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- HTML de la Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-heartbeat"></i>LeMedecin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="projet1.html" data-page="home">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aboutUs.html" data-page="search" id="searchLink">Qui nous sommes ?</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="inscription.html" data-page="signup" id="signupLink">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connexion.html" data-page="login" id="loginLink">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink" style="display: none;">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+        <div id="homePage">
+            <div class="search-section">
+                <div class="description"></div>
+                <h2 style="text-align:center; color:white; margin-top: 10px;">LeMedecin: Annuaire de santé et des médecins en Tunisie.</h2>
+                 <p style="text-align: center; color:purple ;margin:30px">LeMedecin est la source par excellence pour l'information sur les médecins pratiquants en Tunisie. 
+                On vous aide à trouver le bon choix pour un meilleur soin.<br>
+                Contacter le médecin à partir de ses coordonnées afin de prendre un rendez-vous pour votre consultation.</p>
+                <div class="search-inputs">
+                    <input type="text" id="searchInput" placeholder="Nom du médecin..." oninput="searchDoctors()">
+                    <select id="specialtyFilter" onchange="searchDoctors()">
+                        <option value="">Toutes les spécialités</option>
+                        <option value="Cardiologue">Cardiologue</option>
+                        <option value="Dermatologue">Dermatologue</option>
+                        <option value="Pédiatre">Pédiatre</option>
+                        <option value="Dentiste">Dentiste</option>
+                        <option value="Généraliste">Généraliste</option>
+                    </select>
+                </div>
+                <p id="resultsCount" style="color: #666; margin-top: 10px;"></p>
+            </div>
+            <div ><h2 style="text-align: center; margin-bottom: 20px;">Nos Medecins </h2></div>
+            <div id="doctorsGrid" class="doctors-grid"></div>
+        </div>
+        
+
+        <div id="appointmentsPage" class="hidden">
+            <div class="search-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: plum;">Mes Rendez-vous</h2>
+                    <button class="btn-secondary" onclick="showHome()">← Retour</button>
+                </div>
+                <div id="appointmentsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Connexion -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Connexion</h2>
+                <button class="close-btn" onclick="closeModal('loginModal')">×</button>
+            </div>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Se connecter</button>
+                <p style="text-align: center; margin-top: 15px;">
+                    Pas de compte? <a href="#" onclick="showRegister()" style="color: #9c27b0;">S'inscrire</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Inscription -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Inscription</h2>
+                <button class="close-btn" onclick="closeModal('registerModal')">×</button>
+            </div>
+            <form onsubmit="register(event)">
+                <div class="form-group">
+                    <label>Nom complet</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Créer un compte</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Rendez-vous -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Prendre Rendez-vous</h2>
+                <button class="close-btn" onclick="closeModal('appointmentModal')">×</button>
+            </div>
+            <form onsubmit="bookAppointment(event)">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Heure</label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+                <div class="form-group">
+                    <label>Motif de consultation</label>
+                    <textarea id="appointmentReason" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Confirmer le RDV</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Avis -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Avis</h2>
+                <button class="close-btn" onclick="closeModal('reviewModal')">×</button>
+            </div>
+            <div id="reviewsList"></div>
+            <form onsubmit="addReview(event)" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+                <h3 style="margin-bottom: 15px; color: #9c27b0;">Ajouter un avis</h3>
+                <div class="form-group">
+                    <label>Note</label>
+                    <select id="reviewRating" required>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="1">⭐</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Votre avis</label>
+                    <textarea id="reviewText" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Publier l'avis</button>
+            </form>
+        </div>
+    </div>
+
+   
+
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Section À propos -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-heartbeat"></i>
+                        LeMedecin
+                    </div>
+                    <p>
+                        Votre annuaire de santé en Tunisie. Trouvez facilement un médecin, 
+                        prenez rendez-vous en ligne et consultez les avis des patients.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Section Liens rapides -->
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="Accueil.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="aboutUs.html"><i class="fas fa-chevron-right"></i> Qui nous sommes</a></li>
+                        <li><a href="inscription.html"><i class="fas fa-chevron-right"></i> Inscription</a></li>
+                        <li><a href="connexion.html"><i class="fas fa-chevron-right"></i> Connexion</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section Spécialités -->
+                <div class="footer-section">
+                    <h3>Spécialités</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-stethoscope"></i> Cardiologie</a></li>
+                        <li><a href="#"><i class="fas fa-tooth"></i> Dentiste</a></li>
+                        <li><a href="#"><i class="fas fa-baby"></i> Pédiatrie</a></li>
+                        <li><a href="#"><i class="fas fa-spa"></i> Dermatologie</a></li>
+                        <li><a href="#"><i class="fas fa-user-md"></i> Médecine Générale</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section Contact -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Monastir, Tunisie</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+216 96181877</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@lemedecin.tn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun - Sam: 8h - 20h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 LeMedecin.tn - Tous droits réservés | Annuaire de santé en Tunisie</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="main.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>  
+
+</body>
+</html>

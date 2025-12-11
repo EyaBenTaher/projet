@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="inscription.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+       <!-- HTML de la Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-heartbeat"></i>LeMedecin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="projet1.html" data-page="home">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aboutUs.html" data-page="search" id="searchLink">Qui nous sommes ?</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="inscription.html" data-page="signup" id="signupLink">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connexion.html" data-page="login" id="loginLink">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink" style="display: none;">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <!-- PAGE INSCRIPTION -->
+    <div id="inscription" class="page">
+        <div class="form-container">
+            <h1> Créer un compte</h1>
+            <form id="inscriptionForm" onsubmit="handleInscription(event)">
+                <div class="form-group">
+                    <label for="nomComplet">Nom complet *</label>
+                    <input type="text" id="nomComplet" name="nomComplet" required>
+                    <span class="error-message" id="nomError">Le nom doit contenir au moins 3 caractères</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="emailError">Veuillez entrer un email valide</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Téléphone *</label>
+                    <input type="tel" id="telephone" name="telephone" required>
+                    <span class="error-message" id="telError">Le numéro doit contenir 8 chiffres</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe *</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="error-message" id="passwordError">Le mot de passe doit contenir au moins 8 caractères</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmer le mot de passe *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <span class="error-message" id="confirmError">Les mots de passe ne correspondent pas</span>
+                </div>
+
+                <button type="submit" class="btn-primary">S'inscrire</button>
+            </form>
+            <div class="form-footer">
+                Vous avez déjà un compte ? <a href="connexion.html" onclick="showPage('connexion')">Se connecter</a>
+            </div>
+        </div>
+    </div>
+   
+     <script src="auth.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>  
+    
+</body>
+</html>
